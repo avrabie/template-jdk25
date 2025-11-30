@@ -1,0 +1,11 @@
+# Copy this file to gradle.properties and fill in your actual values
+# gradle.properties is gitignored and will not be committed
+
+# Google OAuth Configuration
+GOOGLE_CLIENT_ID=your-google-client-id-here
+GOOGLE_CLIENT_SECRET=your-google-client-secret-here
+
+# Database Configuration
+DB_URL=r2dbc:postgresql://localhost:5432/demo25_db
+DB_USERNAME=admin
+DB_PASSWORD=password
