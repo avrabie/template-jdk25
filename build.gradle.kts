@@ -36,6 +36,8 @@ dependencies {
 
     //add liquibase
     implementation("org.liquibase:liquibase-core")
+    //add mapstruct
+//    implementation("org.mapstruct:mapstruct")
 
 //    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     annotationProcessor("org.projectlombok:lombok")

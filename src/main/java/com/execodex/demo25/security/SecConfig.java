@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -20,9 +21,16 @@ public class SecConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+//                .csrf(csrfSpec -> {
+//                    csrfSpec.requireCsrfProtectionMatcher(
+//                            ServerWebExchangeMatchers.pathMatchers(HttpMethod.POST, "/public")
+//                    );
+//                })
                 .authorizeExchange((authorize) -> authorize
-                        .pathMatchers(HttpMethod.GET,"/public").permitAll()
-                        .pathMatchers(HttpMethod.GET,"/hello").hasAnyRole("ADMIN","SCOPE_openid","openid")
+                        .pathMatchers("/public").permitAll()
+                        .pathMatchers(HttpMethod.POST,"/public").permitAll()
+                        .pathMatchers(HttpMethod.GET,"/hello").hasAnyRole("ADMIN")
                         .anyExchange().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

@@ -21,6 +21,7 @@ public class HelloRoute {
         return RouterFunctions.route()
                 .GET("/hello", request -> ServerResponse.ok().body(Mono.just("Hello World!"), String.class))
                 .GET("/public", request -> ServerResponse.ok().body(Mono.just("Public Route Accessed!"), String.class))
+                .POST("/public", request -> ServerResponse.ok().body(Mono.just("POST method successfully called!"), String.class))
                 .GET("/user", userHandler::getUser)
                 .build();
     }
